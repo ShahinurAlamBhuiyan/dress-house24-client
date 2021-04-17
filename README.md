@@ -1,4 +1,4 @@
-# dress-house
+# dress-house-client
 #### A single page service website where user can order service of cloth...
 ### [Live website](https://dress-house24.web.app/)  |  [Live API server](https://dress-house.herokuapp.com)
 
