@@ -22,7 +22,7 @@ const AddServices = () => {
         formData.append('name', info.name);
         formData.append('cost', info.cost);
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://dress-house.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })
@@ -40,22 +40,22 @@ const AddServices = () => {
 
     return (
         <div className='mt-3'>
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label for="exampleInputPassword1">Service Name</label>
-                <input onBlur={handleBlur} type="text" className="form-control" name='name' placeholder="Service Name" />
-            </div>
-            <div className="form-group">
-                <label for="exampleInputPassword1">Service Cost</label>
-                <input onBlur={handleBlur} type="number" className="form-control" name='cost' placeholder="Service Cost" />
-            </div>
-            <div className="form-group">
-                <label for="exampleInputPassword1">Upload image</label>
-                <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Image" />
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label for="exampleInputPassword1">Service Name</label>
+                    <input onBlur={handleBlur} type="text" className="form-control" name='name' placeholder="Service Name" />
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputPassword1">Service Cost</label>
+                    <input onBlur={handleBlur} type="number" className="form-control" name='cost' placeholder="Service Cost" />
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputPassword1">Upload image</label>
+                    <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Image" />
+                </div>
 
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
         </div>
     );
 };

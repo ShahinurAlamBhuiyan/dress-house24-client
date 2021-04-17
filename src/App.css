@@ -14,3 +14,7 @@
 .fontContainer1{
     font-family: 'Original Surfer', cursive;
 }
+
+input:disabled{
+    background-color: transparent;
+}

@@ -16,10 +16,10 @@ const useStyles = makeStyles({
 });
 
 const Orders = () => {
-    const [ loggedInUser, setLoggedInUser ] = useContext(UserContext);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/ordered?email='+loggedInUser.email)
+        fetch('https://dress-house.herokuapp.com/ordered?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [loggedInUser.email]);
@@ -45,7 +45,7 @@ const Orders = () => {
                     <TableBody>
                         {
                             orders.map(order => (
-                                <TableRow  key={order._id}>
+                                <TableRow key={order._id}>
                                     <TableCell>{new Date(order.orderTime).toDateString('dd/MM/yyyy')}</TableCell>
                                     <TableCell>{order.service}</TableCell>
                                     <TableCell>$ {order.cost}</TableCell>

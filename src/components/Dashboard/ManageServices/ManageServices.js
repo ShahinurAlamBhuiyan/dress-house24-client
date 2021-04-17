@@ -29,7 +29,7 @@ const ManageServices = () => {
     const deletePhoto = id => {
         setIds(id)
         console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://dress-house.herokuapp.com/delete/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -39,7 +39,7 @@ const ManageServices = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://dress-house.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

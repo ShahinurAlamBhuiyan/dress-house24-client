@@ -18,10 +18,10 @@ const useStyles = makeStyles({
 
 const AllOrders = () => {
     const history = useHistory()
-    const [ loggedInUser, setLoggedInUser ] = useContext(UserContext)
-    const [ allOrders, setAllOrders ] = useState([])
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [allOrders, setAllOrders] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/allOrders')
+        fetch('https://dress-house.herokuapp.com/allOrders')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [allOrders]);
@@ -30,17 +30,17 @@ const AllOrders = () => {
         const updateData = {
             status: 'Done'
         }
-        fetch(`http://localhost:5000/updateStatus/${id}`,{
+        fetch(`https://dress-house.herokuapp.com/updateStatus/${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(updateData)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log('updated')
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('updated')
+            })
     }
 
     const classes = useStyles();
@@ -74,9 +74,9 @@ const AllOrders = () => {
                                     <TableCell>{order?.shipmentDetails?.address}</TableCell>
                                     <TableCell>{order?.status}</TableCell>
                                     {
-                                        order?.status !=="Done" && 
+                                        order?.status !== "Done" &&
                                         <TableCell>
-                                        <button className="btn btn-success w-100" onClick={()=>handleStatus(order._id)} >Done</button>
+                                            <button className="btn btn-success w-100" onClick={() => handleStatus(order._id)} >Done</button>
                                         </TableCell>
                                     }
                                 </TableRow>

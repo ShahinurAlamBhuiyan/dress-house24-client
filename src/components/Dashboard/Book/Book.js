@@ -7,11 +7,11 @@ import Orders from '../Orders/Orders';
 import './Book.css'
 import ProcessPayment from './ProcessPayment/ProcessPayment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHome, faShoppingCart , faStar, faSignOutAlt, faUser } from  '@fortawesome/free-solid-svg-icons'
+import { faHome, faShoppingCart, faStar, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Book = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [shipmentData, setShipmentData] = useState({})
+    const [shipmentData, setShipmentData] = useState({});
     const [loggedInUser, setLoggedInUser, token, setToken] = useContext(UserContext)
     const history = useHistory()
     const onSubmit = data => {
@@ -20,7 +20,7 @@ const Book = () => {
     const { _id } = useParams();
     const [service, setService] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/service/' + _id, {
+        fetch('https://dress-house.herokuapp.com/service/' + _id, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -29,7 +29,7 @@ const Book = () => {
 
     const handlePayment = (paymentId) => {
         const bookingDetails = { ...loggedInUser, cost: service.cost, status: 'Pending', service: service.name, shipmentDetails: shipmentData, paymentId, orderTime: new Date() }
-        fetch('http://localhost:5000/addBooking', {
+        fetch('https://dress-house.herokuapp.com/addBooking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,8 +44,8 @@ const Book = () => {
             })
     }
 
-    const [ clickOrders, setClickOrders] = useState(false)
-    const [ clickReview, setClickReview] = useState(false)
+    const [clickOrders, setClickOrders] = useState(false)
+    const [clickReview, setClickReview] = useState(false)
     const handleOrders = () => {
         setClickOrders(true)
         setClickReview(false)
@@ -61,30 +61,29 @@ const Book = () => {
         setLoggedInUser('')
     }
 
-    console.log(shipmentData)
     return (
         <div className='row'>
-            
+
             <div className="col-md-3" style={{ backgroundColor: '#175d5b', height: '100vh', width: '100vw' }}>
-                
-            <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
-                        {
-                            loggedInUser?.email && <>
-                                <button className='btn btn-primary mt-3 w-75' onClick={handleOrders}  style={{ color: 'white' }}>
+
+                <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
+                    {
+                        loggedInUser?.email && <>
+                            <button className='btn btn-primary mt-3 w-75' onClick={handleOrders} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                                     &nbsp; Your Orders</button>
 
-                                <button className='btn btn-primary mt-3 w-75' onClick={handleReview}  style={{ color: 'white' }}>
+                            <button className='btn btn-primary mt-3 w-75' onClick={handleReview} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faStar} />
                                     &nbsp; Review</button>
-                                <button className='btn btn-primary mt-3 w-75' onClick={()=>history.push('/')}  style={{ color: 'white' }}>
+                            <button className='btn btn-primary mt-3 w-75' onClick={() => history.push('/')} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faHome} />
                                     &nbsp; Home</button>
-                                <button className='btn btn-danger mt-3 w-75' onClick={handleLogOut}  style={{ color: 'white' }}>
+                            <button className='btn btn-danger mt-3 w-75' onClick={handleLogOut} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faSignOutAlt} />
                                     &nbsp; Log Out</button>
-                            </>
-                        }
+                        </>
+                    }
                 </div>
 
             </div>
@@ -108,8 +107,8 @@ const Book = () => {
                         <ProcessPayment key={_id} handlePayment={handlePayment} />
                     </div>
                 </div>
-                {clickOrders && <Orders/>}
-                {clickReview && <AddReview/>}
+                {clickOrders && <Orders />}
+                {clickReview && <AddReview />}
             </div>
         </div>
     );

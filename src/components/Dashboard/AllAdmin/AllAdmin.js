@@ -15,9 +15,9 @@ const useStyles = makeStyles({
 });
 
 const AllAdmin = () => {
-    const [ allAdmins, setAllAdmins ] = useState([])
+    const [allAdmins, setAllAdmins] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/allAdmins')
+        fetch('https://dress-house.herokuapp.com/allAdmins')
             .then(res => res.json())
             .then(data => setAllAdmins(data))
     }, []);

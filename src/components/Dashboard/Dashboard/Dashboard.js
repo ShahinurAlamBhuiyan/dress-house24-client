@@ -9,7 +9,7 @@ import AllAdmin from '../AllAdmin/AllAdmin';
 import { useHistory } from 'react-router';
 import ManageServices from '../ManageServices/ManageServices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHome, faPlus, faShoppingCart, faUserPlus, faStar, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faPlus, faShoppingCart, faUserPlus, faStar, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Dashboard = () => {
     const [loggedInUser, setLoggedInUser, token, setToken] = useContext(UserContext);
@@ -25,7 +25,7 @@ const Dashboard = () => {
     const [ordersClick, setOrdersClick] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/admin?email=' + loggedInUser.email)
+        fetch('https://dress-house.herokuapp.com/admin?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 if (data.length) {
@@ -104,7 +104,7 @@ const Dashboard = () => {
         setOrdersClick(false)
     }
 
-    const handleLogOut = ()=>{
+    const handleLogOut = () => {
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('token');
         setToken(null)
@@ -120,11 +120,11 @@ const Dashboard = () => {
                         {
                             !isAdmin && <>
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleOrders} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faShoppingCart} />
+                                    <FontAwesomeIcon icon={faShoppingCart} />
                                     &nbsp;Your Orders</button>
 
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleReview} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faStar} />
+                                    <FontAwesomeIcon icon={faStar} />
                                 &nbsp;Review</button>
                             </>
                         }
@@ -133,25 +133,25 @@ const Dashboard = () => {
                             isAdmin && <>
 
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleAllOrders} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faShoppingCart} />
+                                    <FontAwesomeIcon icon={faShoppingCart} />
                                 &nbsp;Order list</button>
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleAllAdmin} style={{ color: 'white' }}>
                                     <FontAwesomeIcon icon={faUser} />
                                 &nbsp; Admin list</button>
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleService} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faPlus} />
+                                    <FontAwesomeIcon icon={faPlus} />
                                 &nbsp; Add Service</button>
 
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleAdmin} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faUserPlus} />
+                                    <FontAwesomeIcon icon={faUserPlus} />
                                 &nbsp; Add Admin</button>
                                 <button className='btn btn-primary mt-3 w-75' onClick={handleManage} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faPlus} />
+                                    <FontAwesomeIcon icon={faPlus} />
                                 &nbsp; Manage Services</button>
                             </>
                         }
-                        <button className='btn btn-primary mt-3 w-75' onClick={()=> history.push('/')} style={{ color: 'white' }}>
-                                <FontAwesomeIcon icon={faHome} />
+                        <button className='btn btn-primary mt-3 w-75' onClick={() => history.push('/')} style={{ color: 'white' }}>
+                            <FontAwesomeIcon icon={faHome} />
                                 &nbsp; Home</button>
                         <button className='btn btn-danger mt-3 w-75' onClick={handleLogOut} style={{ color: 'white' }}><FontAwesomeIcon icon={faSignOutAlt} />
                             &nbsp; Log Out</button>
