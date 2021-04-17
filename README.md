@@ -26,4 +26,4 @@
 
 ### [Back-end Repository](https://github.com/Porgramming-Hero-web-course/complete-website-server-ShahinurAlamBhuiyan)
 ## Let's take a look!
-![alt text](images/siteSS.png)
+![alt text](src/images/siteSS.png)
