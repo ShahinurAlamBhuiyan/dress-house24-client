@@ -17,7 +17,7 @@ const Advantages = () => {
                 <h1>Our Advantages</h1>
                 <p className='p-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dolorum culpa corrupti impedit itaque eligendi!olor sit <br/> amet consectetur adipisicing elit. Quaerat dolorum culpa corrupti impedit itaque eligendi!</p>
             </div>
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center flex-wrap'>
                 <div className='' style={cardStyle}>
                     <div className='d-flex justify-content-center p-3'>
                         <img src={wallet} alt="" style={{ width: '60px' }} />
