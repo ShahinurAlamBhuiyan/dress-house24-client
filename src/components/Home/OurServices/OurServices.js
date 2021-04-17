@@ -10,7 +10,7 @@ const OurServices = () => {
             .then(data => setServices(data))
     }, [])
     return (
-        <section className='d-flex justify-content-center mt-5 fontContainer'>
+        <section className='d-flex justify-content-center mt-5 fontContainer '>
             <div>
                 <div className='text-center'>
                     <h1>What we offer of Clients</h1>
