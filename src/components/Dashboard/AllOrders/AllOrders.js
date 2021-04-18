@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { useHistory } from 'react-router';
 import { UserContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +18,6 @@ const useStyles = makeStyles({
 });
 
 const AllOrders = () => {
-    const history = useHistory()
     const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const [allOrders, setAllOrders] = useState([])
     useEffect(() => {
@@ -60,11 +58,9 @@ const AllOrders = () => {
                 console.log('updated ongoing')
             })
     }
-
     const classes = useStyles();
-    console.log(allOrders)
     return (
-        <div className='mt-3'>
+        <div className='mt-3 '>
             <h3 className='text-center pt-3'>Welcome {loggedInUser.email}, You have total {allOrders.length} orders.</h3>
             <TableContainer component={Paper} className='orderTableContainer'>
                 <Table className={classes.table} aria-label="simple table">
@@ -76,7 +72,7 @@ const AllOrders = () => {
                             <TableCell style={{ fontWeight: '700' }}>Email</TableCell>
                             <TableCell style={{ fontWeight: '700' }}>Location</TableCell>
                             <TableCell style={{ fontWeight: '700' }}>Status</TableCell>
-                            <TableCell style={{ fontWeight: '700' }}>Condition</TableCell>
+                            <TableCell style={{ fontWeight: '700' }}>Work</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -86,11 +82,11 @@ const AllOrders = () => {
                                     <TableCell>
                                         {order?.shipmentDetails?.name}
                                     </TableCell>
-                                    <TableCell>{order.service}</TableCell>
-                                    <TableCell>{order.shipmentDetails?.phone}</TableCell>
-                                    <TableCell>{order.email}</TableCell>
+                                    <TableCell>{order?.service}</TableCell>
+                                    <TableCell>{order?.shipmentDetails?.phone}</TableCell>
+                                    <TableCell>{order?.email}</TableCell>
                                     <TableCell>{order?.shipmentDetails?.address}</TableCell>
-                                    <TableCell>{order.status}</TableCell>
+                                    <TableCell>{order?.status}</TableCell>
                                     {
                                         order?.status === "Ongoing" &&
                                         <TableCell>

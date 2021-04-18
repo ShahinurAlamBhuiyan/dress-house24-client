@@ -9,9 +9,19 @@ const SimpleCardForm = ({handlePayment}) => {
 
   const [ paymentError, setPaymentError ] = useState(null)
   const [ paymentSuccess, setPaymentSuccess ] = useState(null)
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const handleChange = (event) => {
+    
+    // Listen for changes in the CardElement
+    // and display any errors as the customer types their card details
+    setDisabled(event.empty.length);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setProcessing(true);
 
     if (!stripe || !elements) {
       return;
@@ -28,21 +38,27 @@ const SimpleCardForm = ({handlePayment}) => {
       setPaymentSuccess(null)
     } else {
       
-      setPaymentError(null)
-      setPaymentSuccess(paymentMethod.id)
-      handlePayment(paymentMethod.id)
-      // history.push('/dashboard')
+      setSucceeded(true);
+      setProcessing(false);
+      setPaymentError(null);
+      setPaymentSuccess(paymentMethod.id);
+      handlePayment(paymentMethod.id);
+      // history.push("/dashboard");
     }
   };
 
   return (
     <div>
         <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button  className='btn btn-danger mt-3' type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
+        <CardElement onChange={handleChange}  />
+        <button
+          disabled={processing || disabled || succeeded}
+          className="btn-size btn btn-danger mt-3"
+          type="submit"
+        >
+          <span>{processing ? <p>Processing</p> : "Pay"}</span>
+        </button>
+      </form>
     {
         paymentError && <p className='text-center' style={{color:'red'}}>{paymentError}</p>
     }

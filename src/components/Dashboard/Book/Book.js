@@ -10,7 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faShoppingCart, faStar, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Book = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState } = useForm();
+    const { isSubmitSuccessful, errors } = formState;
     const [shipmentData, setShipmentData] = useState({});
     const [loggedInUser, setLoggedInUser, token, setToken] = useContext(UserContext)
     const history = useHistory()
@@ -66,21 +67,21 @@ const Book = () => {
         <div className='row'>
 
             <div className="col-md-3" style={{ backgroundColor: '#175d5b', height: '100vh', width: '100vw' }}>
-
-                <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
+                <h5 style={{ color: 'white', textAlign: 'center', paddingTop: '20px' }}>USER PANEL</h5>
+                <div className='d-flex justify-content-center align-items-center flex-column mt-4 pl-2'>
                     {
                         loggedInUser?.email && <>
-                            <button className='btn btn-primary mt-3 w-75' onClick={handleOrders} style={{ color: 'white' }}>
+                            <button className='btn btn-primary mt-3 w-100' onClick={handleOrders} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                                     &nbsp; Your Orders</button>
 
-                            <button className='btn btn-primary mt-3 w-75' onClick={handleReview} style={{ color: 'white' }}>
+                            <button className='btn btn-primary mt-3 w-100' onClick={handleReview} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faStar} />
                                     &nbsp; Review</button>
-                            <button className='btn btn-primary mt-3 w-75' onClick={() => history.push('/')} style={{ color: 'white' }}>
+                            <button className='btn btn-primary mt-3 w-100' onClick={() => history.push('/')} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faHome} />
                                     &nbsp; Home</button>
-                            <button className='btn btn-danger mt-3 w-75' onClick={handleLogOut} style={{ color: 'white' }}>
+                            <button className='btn btn-danger mt-3 w-100' onClick={handleLogOut} style={{ color: 'white' }}>
                                 <FontAwesomeIcon icon={faSignOutAlt} />
                                     &nbsp; Log Out</button>
                         </>
@@ -100,12 +101,20 @@ const Book = () => {
 
                             <input  {...register("phone", { required: true })} placeholder='Your phone number' />
                             {errors.phone && <span className='error'>Phone Number is required</span>}
-                            <input className='btn btn-warning' type="submit" />
+                            <input
+                                disabled={isSubmitSuccessful}
+                                className="btn btn-success"
+                                type="submit"
+                            />
                         </form>
                     </div>
                     <div>
-                        <h2>Please pay for Us</h2>
-                        <ProcessPayment key={_id} handlePayment={handlePayment} />
+                        {!isSubmitSuccessful ? ("") : (
+                            <div className="ProcessPayment">
+                                <h2>Please complete your payment</h2>
+                                <ProcessPayment key={_id} handlePayment={handlePayment} />
+                            </div>
+                        )}
                     </div>
                 </div>
                 {clickOrders && <Orders />}

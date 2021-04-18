@@ -14,3 +14,15 @@
 .error{
     color: red;
 }
+
+.ship-form > input:disabled {
+    background-color: transparent;
+}
+
+.btn-size {
+    width: 250px;
+  }
+  .ProcessPayment {
+    padding-top: 90px;
+    
+  }
