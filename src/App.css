@@ -7,6 +7,12 @@
     height:185px;
     overflow-y: scroll;
 }
+
+.orderTableContainer{
+    height: 85vh;
+    overflow-y: scroll;
+}
+
 .fontContainer{
     font-family: 'Lobster', cursive;
 }

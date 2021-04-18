@@ -40,6 +40,7 @@ const Book = () => {
             .then(data => {
                 if (data) {
                     alert('your order placed successfully')
+                    history.push('/dashboard')
                 }
             })
     }

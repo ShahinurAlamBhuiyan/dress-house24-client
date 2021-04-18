@@ -1,9 +1,9 @@
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import React, { useState } from 'react'
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 const SimpleCardForm = ({handlePayment}) => {
-  const history = useHistory();
+  // const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -31,7 +31,7 @@ const SimpleCardForm = ({handlePayment}) => {
       setPaymentError(null)
       setPaymentSuccess(paymentMethod.id)
       handlePayment(paymentMethod.id)
-      history.push('/dashboard')
+      // history.push('/dashboard')
     }
   };
 

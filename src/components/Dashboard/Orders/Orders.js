@@ -25,13 +25,14 @@ const Orders = () => {
     }, [loggedInUser.email]);
 
     const classes = useStyles();
+    console.log(orders)
     return (
         <div className='container'>
             <div className='text-center'>
                 <h3>Hello, {loggedInUser.email}</h3>
                 <h4>You have total {orders.length} orders.</h4>
             </div>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className='orderTableContainer'>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>

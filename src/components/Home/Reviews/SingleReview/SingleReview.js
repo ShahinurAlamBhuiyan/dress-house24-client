@@ -1,9 +1,8 @@
 import React from 'react';
-// import userImage from '../../../../images/botam.jpeg'
 
 const SingleReview = ({ review: { name, description, image, img, address } }) => {
     return (
-        <div className='col-md-4 mb-4'>
+        <div className='mb-4 ml-4 mb-5'>
             <div className="card shadow-sm" style={{width:'350px', height:'300px'}}>
                 <div className="card-body">
                     <p className="card-text text-secondary text-justify review-description">{description}</p>

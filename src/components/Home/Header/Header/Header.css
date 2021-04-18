@@ -5,3 +5,15 @@
     background-size: cover;
     background-position: center center;
 }
+
+@media (max-width: 768px) {
+    .nav-link {
+      color: white !important;
+    }
+  .navbar-collapse{
+    background-color: rgba(63, 71, 75, 0.5);
+  }
+  .advantageContainer{
+      flex-wrap: wrap;
+  }
+}

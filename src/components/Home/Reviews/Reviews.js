@@ -10,11 +10,11 @@ const Reviews = () => {
             .then(data => setReviews(data))
     }, [])
     return (
-        <div className='container fontContainer'>
-            <h1 className='text-center'>Customer's Review is most valuable for us.</h1>
+        <div className='fontContainer'>
+            <h1 className='text-center mb-4 mt-2'>Customer's Review is most valuable for us.</h1>
             {
                 reviews.length ?
-                    <div className='row mt-5 pt-3'>
+                    <div className='d-flex justify-content-center flex-wrap'>
                         {
                             reviews.map(review => <SingleReview review={review} key={review._id} />)
                         }
