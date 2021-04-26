@@ -12,11 +12,13 @@
 + user can review our site
 + Only admin make another admin
 + admin can also add service 
++ add payment system
 
 ## Front-end Technology :
 + React.js
 + Material-Ui
 + Bootstrap
++ Stripejs
 
 ## Back-end Technology :
 + Node.js
