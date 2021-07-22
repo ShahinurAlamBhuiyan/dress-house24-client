@@ -6,6 +6,7 @@
 .review-description{
     height:185px;
     overflow-y: scroll;
+    padding: 0px 25px 0px 15px;
 }
 
 .orderTableContainer{
